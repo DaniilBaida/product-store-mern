@@ -29,9 +29,9 @@ const CreatePage = () => {
         });
     };
     return (
-        <Container maxW={"xl"}>
+        <Container maxW={"xl"} py={12}>
             <VStack gap={8}>
-                <Heading mt={24} size={"3xl"} textAlign={"center"} mb={8}>
+                <Heading size={"3xl"} textAlign={"center"} mb={8}>
                     Create New Product
                 </Heading>
                 <Box
