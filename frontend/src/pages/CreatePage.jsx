@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useColorModeValue } from "../components/ui/color-mode";
+import { useProductStore } from "../store/product";
+import { toaster } from "@/components/ui/toaster";
 
 const CreatePage = () => {
     const [newProduct, setNewProduct] = useState({
@@ -15,8 +17,16 @@ const CreatePage = () => {
         price: "",
         image: "",
     });
-    const handleAddProduct = () => {
-        console.log(newProduct);
+
+    const { createProduct } = useProductStore();
+    const handleAddProduct = async () => {
+        const { success, message } = await createProduct(newProduct);
+        toaster.create({
+            title: success === true ? "Success" : "Error",
+            description: message,
+            type: success === true ? "success" : "error",
+            closable: true,
+        });
     };
     return (
         <Container maxW={"xl"}>
